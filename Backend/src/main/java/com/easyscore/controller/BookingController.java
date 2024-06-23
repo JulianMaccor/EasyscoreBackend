@@ -39,6 +39,17 @@ public class BookingController {
         }
     }
 
+    @Operation(summary = "Elimina/Cancela una reserva")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBooking(@PathVariable Long id) {
+        try {
+            bookingService.delete(id);
+            return ResponseEntity.ok("Reserva cancelada con éxito");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error al cancelar la reserva");
+        }
+    }
+
     @Operation(summary = "Busca reservas por producto y fecha")
     @GetMapping("/product/{productId}/date/{date}")
     public List<Booking> getBookingsByProductAndDate(@PathVariable Long productId, @PathVariable String date) {

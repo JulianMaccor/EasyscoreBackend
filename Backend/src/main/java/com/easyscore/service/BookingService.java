@@ -30,6 +30,10 @@ public class BookingService {
         return bookings.isEmpty();
     }
 
+    public void delete(Long id) {
+        bookingRepository.deleteById(id);
+    }
+
     public List<Booking> findBookingsByProductoAndFecha(Long productoId, LocalDate fechaReserva) {
         return bookingRepository.findByProductoIdAndFechaReserva(productoId, fechaReserva);
     }
